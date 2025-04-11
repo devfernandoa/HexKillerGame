@@ -26,10 +26,15 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
-        if (homing && targetEnemy != null)
+        if (homing)
         {
-            Vector2 direction = (targetEnemy.position - transform.position).normalized;
-            rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, direction * rb.linearVelocity.magnitude, Time.deltaTime * 5f);
+            FindNextTarget(); // Always find the closest target
+
+            if (targetEnemy != null)
+            {
+                Vector2 direction = (targetEnemy.position - transform.position).normalized;
+                rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, direction * rb.linearVelocity.magnitude, Time.deltaTime * 5f);
+            }
         }
     }
 
@@ -91,8 +96,6 @@ public class Projectile : MonoBehaviour
 
         foreach (GameObject enemy in enemies)
         {
-            if (enemy.transform == targetEnemy) continue; // Skip the current target
-
             float distance = Vector2.Distance(transform.position, enemy.transform.position);
             if (distance < closestDistance)
             {
@@ -104,6 +107,10 @@ public class Projectile : MonoBehaviour
         if (closestEnemy != null)
         {
             targetEnemy = closestEnemy.transform;
+        }
+        else
+        {
+            targetEnemy = null;
         }
     }
 

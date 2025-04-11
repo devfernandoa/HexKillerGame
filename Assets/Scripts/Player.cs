@@ -298,13 +298,13 @@ public class Player : MonoBehaviour
     {
         canShoot = true;
         multiShotEnabled = true;
-        multiShotAmount++;
+        multiShotAmount += 2;
     }
 
     public void EnableSplitShot()
     {
         canShoot = true;
         splitShotEnabled = true;
-        splitShotAmount++;
+        splitShotAmount += 2;
     }
 }

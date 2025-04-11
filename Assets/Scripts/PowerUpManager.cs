@@ -67,12 +67,12 @@ public class PowerUpManager : MonoBehaviour
         allPowerUps.Add(new PowerUp
         {
             name = "Quick Draw",
-            description = "Shoots 10% faster",
+            description = "Shoots 20% faster",
             icon = Resources.Load<Sprite>("Sprites/QuickDraw"),
             rarity = "Common",
             applyEffect = (player) =>
             {
-                player.shootCooldown *= 0.9f;
+                player.shootCooldown *= 0.8f;
             }
         });
 
